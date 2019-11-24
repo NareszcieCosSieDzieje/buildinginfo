@@ -1,4 +1,4 @@
-package main.java.pl.put.poznan.buildinginfo.logic;
+package pl.put.poznan.buildinginfo.logic;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ public class Floor extends Location {
 
 
         Floor(){
+            this.roomArrayList = new ArrayList<Room>(1000);
             //TODO: stuff that makes this piece of code work
         }
 
@@ -19,6 +20,7 @@ public class Floor extends Location {
             return floorSquareArea;
         }
 
+
         public float getCubicArea(){
             float floorCubicArea = 0;
             for(Room r: this.roomArrayList){
@@ -28,17 +30,17 @@ public class Floor extends Location {
         }
 
 
-
         public Room getRoom(Object... args){
             String name = args.length > 0 ? (String)args[0] : null;
             String id   = args.length > 1 ? (String)args[1] : null;
             for(Room r: this.roomArrayList){
-                if (r.getName() == name || r.getId() == id) {
+                if (r.getName().equals(name) || r.getId().equals(id) ) {
                     return r;
                 }
             }
             return null;
         }
+
 
         public float getLightPerSquareArea(){
             float lightPerSquareArea = 0;
@@ -46,15 +48,27 @@ public class Floor extends Location {
                 lightPerSquareArea += r.getLightPerSquareArea();
             }
             return lightPerSquareArea;
-
         }
+
 
         public float getHeatPerCubicArea(){
-            float heatPerSquareArea = 0;
+            float heatPerCubicArea = 0;
             for(Room r: this.roomArrayList){
-                heatPerSquareArea += r.getHeatPerCubicArea();
+                heatPerCubicArea += r.getHeatPerCubicArea();
             }
-            return heatPerSquareArea;
-
+            return heatPerCubicArea;
         }
+
+
+        public ArrayList<Room> getOvearHeatingRooms(float parameter){
+            ArrayList<Room> overHeatingRooms = new ArrayList<Room>();
+            for(Room r: this.roomArrayList){
+                if(r.getHeatPerCubicArea() > parameter){
+                    overHeatingRooms.add(r);
+                }
+            }
+            return overHeatingRooms;
+        }
+
+
 }

@@ -1,4 +1,4 @@
-package main.java.pl.put.poznan.buildinginfo.logic;
+package pl.put.poznan.buildinginfo.logic;
 
 public class Room extends Location{
     private float area;

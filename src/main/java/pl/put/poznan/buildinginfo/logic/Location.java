@@ -1,10 +1,11 @@
-package main.java.pl.put.poznan.buildinginfo.logic;
+package pl.put.poznan.buildinginfo.logic;
 
 import java.util.UUID;
 
 public abstract class Location {
     private String id;
     private String name;
+
     public Location(){
         this("RANDOMLY_GENERATED");
     }
@@ -14,7 +15,6 @@ public abstract class Location {
         this.id = UUID.randomUUID().toString();
         //Metoda generowania/sprawdzania nazw>
     }
-    //gettery
     // settery
 
     public String getId() {
