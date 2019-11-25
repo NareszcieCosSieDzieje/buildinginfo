@@ -2,6 +2,10 @@ language: java
 jdk:
   -oraclejdk13
 
+branches:
+  only:
+    - master
+
 install: true
 script: ./mvn clean install
 
