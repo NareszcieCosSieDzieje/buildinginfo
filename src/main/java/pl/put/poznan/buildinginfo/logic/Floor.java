@@ -3,6 +3,7 @@ package pl.put.poznan.buildinginfo.logic;
 import java.util.ArrayList;
 
 public class Floor extends Location {
+
         private ArrayList<Room> roomArrayList;
 
 

@@ -23,7 +23,6 @@ public class BuildingInfoController {
     @RequestMapping("/getFloorHeatPerCubicArea", method=GET)
     @RequestMapping("/getOverheatingRooms", method=GET)
 
-
     */
 
 
