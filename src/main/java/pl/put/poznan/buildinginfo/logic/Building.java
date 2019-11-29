@@ -2,6 +2,7 @@ package pl.put.poznan.buildinginfo.logic;
 
 import java.util.ArrayList;
 
+
 public class Building extends Location{
 
     private ArrayList<Floor> floorArrayList;
@@ -9,7 +10,6 @@ public class Building extends Location{
     public Building(){
         //super(); nadrzedna klasa implicit
         this.floorArrayList = new ArrayList<Floor>(100);
-
     }
 
     public Building(ArrayList<Floor> floors){

@@ -6,11 +6,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BuildinginfoApplication {
-	private static Logger log = LoggerFactory.getLogger(BuildinginfoApplication.class);
+public class BuildingInfoApplication {
+	private static Logger log = LoggerFactory.getLogger(BuildingInfoApplication.class);
 	public static void main(String[] args) {
 		log.info("Creating Spring Project");
-		SpringApplication.run(BuildinginfoApplication.class, args);
+		SpringApplication.run(BuildingInfoApplication.class, args);
 	}
 
 }
