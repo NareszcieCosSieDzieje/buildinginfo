@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class DataGenerator {
 
-    public Building generateBuilding(){
-        Building building = new Building();
+    public Building generateBuilding(String name) {
+        Building building = new Building(name);
         Random generator = new Random();
 
         int floors = generator.nextInt(10) + 1;
