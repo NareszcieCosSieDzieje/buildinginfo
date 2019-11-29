@@ -12,7 +12,6 @@ public class BuildingInfoApplication {
 		log.info("Creating Spring Project");
 		SpringApplication.run(BuildingInfoApplication.class, args);
 	}
-
 }
 
 

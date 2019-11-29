@@ -1,8 +1,12 @@
 package pl.put.poznan.buildinginfo.logic;
 
+import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.ArrayList;
 
-
+@Document(collection = "Buildings")
+@TypeAlias("Building")
 public class Building extends Location{
 
     private ArrayList<Floor> floorArrayList;
