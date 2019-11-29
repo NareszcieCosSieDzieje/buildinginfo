@@ -8,13 +8,21 @@ public class Building extends Location{
     private ArrayList<Floor> floorArrayList;
 
     public Building(){
-        //super(); nadrzedna klasa implicit
+        super();
         this.floorArrayList = new ArrayList<Floor>(100);
     }
 
-    public Building(ArrayList<Floor> floors){
-        //dunno
+    public Building(String name){
+        super(name);
+        this.floorArrayList = new ArrayList<Floor>(100);
+    }
 
+    public ArrayList<Floor> getFloorArrayList() {
+        return floorArrayList;
+    }
+
+    public void setFloorArrayList(ArrayList<Floor> floorArrayList) {
+        this.floorArrayList = floorArrayList;
     }
 
     public float getTotalSquareArea(){
