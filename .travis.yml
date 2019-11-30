@@ -6,6 +6,6 @@ branches:
   only:
     - master
 
-install: true
-script: ./mvn clean install
+#install: true
+#script: ./mvn clean install
 
