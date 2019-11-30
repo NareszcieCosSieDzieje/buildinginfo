@@ -5,14 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"pl.put.poznan.buildinginfo.rest"})
 public class BuildingInfoApplication {
-	private static Logger log = LoggerFactory.getLogger(BuildingInfoApplication.class);
+	//private static Logger log = LoggerFactory.getLogger(BuildingInfoApplication.class);
 	public static void main(String[] args) {
-		log.info("Creating Spring Project");
+		//log.info("Creating Spring Project");
 		SpringApplication.run(BuildingInfoApplication.class, args);
 	}
-
 }
 
 

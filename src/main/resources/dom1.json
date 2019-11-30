@@ -1,0 +1,58 @@
+{
+  "id" : 153,
+  "name" : "Dom 1",
+  "floorArrayList" : [
+      {
+        "id" : 164,
+        "name" : "Parter",
+        "roomArrayList" : [
+          {
+            "id" : 174,
+            "name" : "Salon",
+            "area" : 20.0,
+            "cube" : 40.0,
+            "heating" : 300.0,
+            "light" : 200.0
+          },
+          {
+            "id" : 184,
+            "name" : "Korytarz",
+            "area" : 6.0,
+            "cube" : 12.0,
+            "heating" : 100.0,
+            "light" : 100.0
+          },
+          {
+            "id" : 194,
+            "name" : "Kuchnia",
+            "area" : 10.0,
+            "cube" : 20.0,
+            "heating" : 120.0,
+            "light" : 200.0
+          }
+        ]
+      },
+      {
+        "id" : 165,
+        "name" : "Perwsze pietro",
+        "roomArrayList" : [
+          {
+            "id" : 175,
+            "name" : "Sypialnia",
+            "area" : 16.0,
+            "cube" : 32.0,
+            "heating" : 200.0,
+            "light" : 180.0
+          },
+          {
+            "id" : 185,
+            "name" : "Pokoj goscinny",
+            "area" : 10.0,
+            "cube" : 20.0,
+            "heating" : 200.0,
+            "light" : 180.0
+          }
+        ]
+      }
+    ]
+}

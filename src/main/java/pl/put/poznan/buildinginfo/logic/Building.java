@@ -34,8 +34,8 @@ public class Building extends Location{
     }
 
     public float getFloorSquareArea(Object... args) {
-        String name = args.length > 0 ? (String)args[0] : null;
-        String id   = args.length > 1 ? (String)args[1] : null;
+        String id = args.length > 0 ? (String)args[0] : null;
+        String name   = args.length > 1 ? (String)args[1] : null;
         for (Floor f : this.floorArrayList) {
             if (f.getName().equals(name) || f.getId().equals(id) ) {
                 return f.getSquareArea();
@@ -45,20 +45,29 @@ public class Building extends Location{
     }
 
     public float getRoomSquareArea(Object... args) {
-        String name = args.length > 0 ? (String)args[0] : null;
-        String id   = args.length > 1 ? (String)args[1] : null;
+
+        String id = args.length > 0 ? (String)args[0] : null;
+        String name   = args.length > 1 ? (String)args[1] : null;
         for (Floor f : this.floorArrayList) {
-            Room r = f.getRoom();
-            if (r.getName().equals(name) || r.getId().equals(id) ) {
-               return r.getArea();
+            Room r = f.getRoom(id);
+            if(r != null) {
+                return r.getArea();
             }
         }
         return -1;
+
+    }
+    public float getTotalCubicArea(){
+        float totalCubicArea = 0;
+        for(Floor f: this.floorArrayList){
+            totalCubicArea += f.getCubicArea();
+        }
+        return totalCubicArea;
     }
 
     public float getFloorCubicArea(Object... args){
-        String name = args.length > 0 ? (String)args[0] : null;
-        String id   = args.length > 1 ? (String)args[1] : null;
+        String id = args.length > 0 ? (String)args[0] : null;
+        String name   = args.length > 1 ? (String)args[1] : null;
         for (Floor f : this.floorArrayList) {
             if (f.getName().equals(name) || f.getId().equals(id) )  {
                 return f.getCubicArea();
@@ -68,34 +77,73 @@ public class Building extends Location{
     }
 
     public float getRoomCubicArea(Object... args) {
-        String name = args.length > 0 ? (String)args[0] : null;
-        String id   = args.length > 1 ? (String)args[1] : null;
+        String id = args.length > 0 ? (String)args[0] : null;
+        String name   = args.length > 1 ? (String)args[1] : null;
         for (Floor f : this.floorArrayList) {
-            Room r = f.getRoom();
-            if (r.getName().equals(name) || r.getId().equals(id) ) {
+            Room r = f.getRoom(id);
+            if(r != null) {
                 return r.getCube();
             }
         }
         return -1;
     }
 
-
-    public float getFloorLightPerSquareArea() {
-        float totaLightperSquareArea = 0;
+    public float getTotalLight(){
+        float totalLight = 0;
         for(Floor f: this.floorArrayList){
-            totaLightperSquareArea += f.getLightPerSquareArea();
+            totalLight += f.getLight();
         }
-        return totaLightperSquareArea;
+        totalLight = totalLight/this.getTotalSquareArea();
+        return totalLight;
     }
 
 
-    public float getFloorHeatPerCubicArea() {
-        float totaHeatperCubicArea = 0;
-        for(Floor f: this.floorArrayList){
-            totaHeatperCubicArea += f.getHeatPerCubicArea();
+    public float getFloorLight(String id) {
+        for (Floor f : this.floorArrayList) {
+            if (f.getId().equals(id))  {
+                return f.getLight()/f.getSquareArea();
+            }
         }
-        return totaHeatperCubicArea;
+        return -1;
     }
+    public float getRoomLight(String id) {
+        for (Floor f : this.floorArrayList) {
+            Room r = f.getRoom(id);
+            if(r != null) {
+                return r.getLight()/r.getArea();
+            }
+        }
+        return -1;
+    }
+    public float getTotalHeat(){
+        float totalHeat = 0;
+        for(Floor f: this.floorArrayList){
+            totalHeat += f.getLight();
+        }
+        totalHeat = totalHeat/this.getTotalSquareArea();
+        return totalHeat;
+    }
+    public float getFloorHeat(String id) {
+        for (Floor f : this.floorArrayList) {
+            if (f.getId().equals(id))  {
+                return f.getHeat()/f.getCubicArea();
+            }
+        }
+        return -1;
+    }
+    public float getRoomHeat(String id) {
+        for (Floor f : this.floorArrayList) {
+            Room r = f.getRoom(id);
+            if(r != null) {
+                return r.getHeat()/r.getCube();
+            }
+        }
+        return -1;
+    }
+
+
+
+
 
 
     //TODO: obiekt zwracany, arraylist czy string złożony z room.toString?
