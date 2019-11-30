@@ -44,8 +44,8 @@ public class Floor extends Location {
 
 
     public Room getRoom(Object... args) {
-        String name = args.length > 0 ? (String) args[0] : null;
-        String id = args.length > 1 ? (String) args[1] : null;
+        String id = args.length > 0 ? (String) args[0] : null;
+        String name = args.length > 1 ? (String) args[1] : null;
         for (Room r : this.roomArrayList) {
             if (r.getName().equals(name) || r.getId().equals(id)) {
                 return r;
@@ -53,23 +53,20 @@ public class Floor extends Location {
         }
         return null;
     }
-
-
-    public float getLightPerSquareArea() {
-        float lightPerSquareArea = 0;
-        for (Room r : this.roomArrayList) {
-            lightPerSquareArea += r.getLightPerSquareArea();
+    public float getLight(){
+        float light = 0;
+        for (Room r: this.roomArrayList) {
+            light += r.getLight();
         }
-        return lightPerSquareArea;
+        return light;
     }
 
-
-    public float getHeatPerCubicArea() {
-        float heatPerCubicArea = 0;
-        for (Room r : this.roomArrayList) {
-            heatPerCubicArea += r.getHeatPerCubicArea();
+    public float getHeat(){
+        float heat = 0;
+        for (Room r: this.roomArrayList) {
+            heat += r.getHeat();
         }
-        return heatPerCubicArea;
+        return heat;
     }
 
 

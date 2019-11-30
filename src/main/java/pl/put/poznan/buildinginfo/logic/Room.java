@@ -37,7 +37,7 @@ public class Room extends Location{
         return cube;
     }
 
-    public float getHeating() {
+    public float getHeat() {
         return heating;
     }
 
