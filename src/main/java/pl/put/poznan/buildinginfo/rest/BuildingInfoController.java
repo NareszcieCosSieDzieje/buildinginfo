@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.put.poznan.buildinginfo.logic.Building;
 import pl.put.poznan.buildinginfo.logic.JSONparser;
 import pl.put.poznan.buildinginfo.logic.ReadBuildingFile;
+import pl.put.poznan.buildinginfo.logic.Room;
+
+import java.util.ArrayList;
 
 
 @RestController
@@ -89,6 +92,13 @@ public class BuildingInfoController {
         return building.getRoomHeat(roomid);
     }
 
-
+    @RequestMapping(method = RequestMethod.GET, path = "/overheating-rooms/{buildingFilename}/{parameter}")
+    public ArrayList<Room> roomHeat(@PathVariable String buildingFilename, @PathVariable float parameter) {
+        String buildingString = new ReadBuildingFile().toString(buildingFilename);
+        Building building = JSONparser.getObject(buildingString);
+        return building.getOverheatingRooms(parameter);
+    }
+        //OVERHEATING ROOMS FUNKCJA nie ma
+        //puty zwracaja dane pokazujac jakie id maja rzeczy
 
 }

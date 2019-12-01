@@ -142,11 +142,6 @@ public class Building extends Location{
     }
 
 
-
-
-
-
-    //TODO: obiekt zwracany, arraylist czy string złożony z room.toString?
     public ArrayList<Room> getOverheatingRooms(float parameter){
         ArrayList<Room> overHeatingRooms = new ArrayList<Room>();
         for(Floor f: this.floorArrayList){
