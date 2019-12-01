@@ -1,10 +1,13 @@
 package pl.put.poznan.buildinginfo.logic;
 
+import com.google.gson.Gson;
+
+import java.io.*;
 import java.util.Random;
 
 public class DataGenerator {
 
-    public Building generateBuilding(String name) {
+    public void generateBuilding(String name) throws IOException {
         Building building = new Building(name);
         Random generator = new Random();
 
@@ -18,8 +21,22 @@ public class DataGenerator {
             }
             building.getFloorArrayList().add(floor);
         }
+        Gson g = new Gson();
+        String jsonString = g.toJson(building);
+        StringBuilder file_name = new StringBuilder("src/main/resources/");
+        file_name.append(building.getName());
+        file_name.append(".json");
 
-        return building;
+        File file = new File(file_name.toString());
+        if (file.createNewFile()){
+            System.out.println("File is created!");
+        }
+        else{
+            System.out.println("File already exists.");
+        }
+        FileWriter writer = new FileWriter (file);
+        writer.write(jsonString);
+        writer.close();
 
         //jakis data loader do typow budynkow np.: kamienica, blok, wieżowiec, dom wolnostojący
     }
