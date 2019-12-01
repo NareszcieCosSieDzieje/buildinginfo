@@ -49,42 +49,49 @@ public class BuildingInfoController {
         Building building = JSONparser.getObject(buildingString);
         return building.getFloorCubicArea(floorid);
     }
+
     @RequestMapping(method = RequestMethod.GET, path = "/room-cubic-area/{buildingFilename}/{roomid}")
     public float roomCubicArea(@PathVariable String buildingFilename, @PathVariable String roomid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getRoomCubicArea(roomid);
     }
+
     @RequestMapping(method = RequestMethod.GET, path = "/total-light/{buildingFilename}")
     public float totalLight(@PathVariable String buildingFilename) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getTotalLight();
     }
+
     @RequestMapping(method = RequestMethod.GET, path = "/floor-light/{buildingFilename}/{floorid}")
     public float floorLight(@PathVariable String buildingFilename, @PathVariable String floorid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getFloorLight(floorid);
     }
+
     @RequestMapping(method = RequestMethod.GET, path = "/room-light/{buildingFilename}/{roomid}")
     public float roomLight(@PathVariable String buildingFilename, @PathVariable String roomid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getRoomLight(roomid);
     }
+
     @RequestMapping(method = RequestMethod.GET, path = "/total-heat/{buildingFilename}")
     public float totalHeat(@PathVariable String buildingFilename) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getTotalHeat();
     }
+
     @RequestMapping(method = RequestMethod.GET, path = "/floor-heat/{buildingFilename}/{floorid}")
     public float floorHeat(@PathVariable String buildingFilename, @PathVariable String floorid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getFloorHeat(floorid);
     }
+
     @RequestMapping(method = RequestMethod.GET, path = "/room-heat/{buildingFilename}/{roomid}")
     public float roomHeat(@PathVariable String buildingFilename, @PathVariable String roomid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
@@ -98,7 +105,13 @@ public class BuildingInfoController {
         Building building = JSONparser.getObject(buildingString);
         return building.getOverheatingRooms(parameter);
     }
-        //OVERHEATING ROOMS FUNKCJA nie ma
-        //puty zwracaja dane pokazujac jakie id maja rzeczy
 
+    /*
+    @RequestMapping(value = "/add_building", method = RequestMethod.POST)
+    public ResponseEntity<List<Building>> addBuilding(@RequestBody List<Building> buildings) {
+        //wez json liste budynkow sprawdz czy okej dane/ dodaj id?? i to co ok to zapisz a to co nie to zwroc
+
+        return new ResponseEntity<List<Car>>(cars, HttpStatus.OK);
+    }*/
 }
+        //puty zwracaja dane pokazujac jakie id maja rzeczy
