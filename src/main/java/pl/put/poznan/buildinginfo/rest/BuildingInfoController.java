@@ -1,5 +1,7 @@
 package pl.put.poznan.buildinginfo.rest;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,19 @@ import java.util.ArrayList;
 
 @RestController
 public class BuildingInfoController {
+
+    static class ExceptionHandler{
+
+        public static ResponseEntity<Float> checkValue(Float value){
+            if (value == -1){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            else{
+                return new ResponseEntity<>(value, HttpStatus.OK);
+            }
+        }
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/total-square-area/{buildingFilename}")
     public float totalSquareArea(@PathVariable String buildingFilename) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
@@ -22,17 +37,19 @@ public class BuildingInfoController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-square-area/{buildingFilename}/{floorid}")
-    public float floorSquareArea(@PathVariable String buildingFilename, @PathVariable String floorid) {
+    public  ResponseEntity<Float> floorSquareArea(@PathVariable String buildingFilename, @PathVariable String floorid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getFloorSquareArea(floorid);
+        Float res = building.getFloorSquareArea(floorid);
+        return ExceptionHandler.checkValue(res);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-square-area/{buildingFilename}/{roomid}")
-    public float roomSquareArea(@PathVariable String buildingFilename, @PathVariable String roomid) {
+    public ResponseEntity<Float> roomSquareArea(@PathVariable String buildingFilename, @PathVariable String roomid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getRoomSquareArea(roomid);
+        Float res = building.getRoomSquareArea(roomid);
+        return ExceptionHandler.checkValue(res);
     }
 
 
@@ -44,17 +61,19 @@ public class BuildingInfoController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-cubic-area/{buildingFilename}/{floorid}")
-    public float floorCubicArea(@PathVariable String buildingFilename, @PathVariable String floorid) {
+    public ResponseEntity<Float> floorCubicArea(@PathVariable String buildingFilename, @PathVariable String floorid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getFloorCubicArea(floorid);
+        Float res = building.getFloorCubicArea(floorid);
+        return ExceptionHandler.checkValue(res);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-cubic-area/{buildingFilename}/{roomid}")
-    public float roomCubicArea(@PathVariable String buildingFilename, @PathVariable String roomid) {
+    public ResponseEntity<Float> roomCubicArea(@PathVariable String buildingFilename, @PathVariable String roomid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getRoomCubicArea(roomid);
+        Float res = building.getRoomCubicArea(roomid);
+        return ExceptionHandler.checkValue(res);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/total-light/{buildingFilename}")
@@ -65,17 +84,19 @@ public class BuildingInfoController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-light/{buildingFilename}/{floorid}")
-    public float floorLight(@PathVariable String buildingFilename, @PathVariable String floorid) {
+    public ResponseEntity<Float> floorLight(@PathVariable String buildingFilename, @PathVariable String floorid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getFloorLight(floorid);
+        Float res = building.getFloorLight(floorid);
+        return ExceptionHandler.checkValue(res);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-light/{buildingFilename}/{roomid}")
-    public float roomLight(@PathVariable String buildingFilename, @PathVariable String roomid) {
+    public ResponseEntity<Float> roomLight(@PathVariable String buildingFilename, @PathVariable String roomid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getRoomLight(roomid);
+        Float res = building.getRoomLight(roomid);
+        return ExceptionHandler.checkValue(res);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/total-heat/{buildingFilename}")
@@ -86,17 +107,19 @@ public class BuildingInfoController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-heat/{buildingFilename}/{floorid}")
-    public float floorHeat(@PathVariable String buildingFilename, @PathVariable String floorid) {
+    public ResponseEntity<Float> floorHeat(@PathVariable String buildingFilename, @PathVariable String floorid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getFloorHeat(floorid);
+        Float res = building.getFloorHeat(floorid);
+        return ExceptionHandler.checkValue(res);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-heat/{buildingFilename}/{roomid}")
-    public float roomHeat(@PathVariable String buildingFilename, @PathVariable String roomid) {
+    public ResponseEntity<Float> roomHeat(@PathVariable String buildingFilename, @PathVariable String roomid) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
-        return building.getRoomHeat(roomid);
+        Float res = building.getRoomHeat(roomid);
+        return ExceptionHandler.checkValue(res);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/overheating-rooms/{buildingFilename}/{parameter}")
