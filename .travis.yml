@@ -3,10 +3,19 @@ jdk:
   -oraclejdk13
 before_install:
   - chmod +x mvnw
-  -
+
 branches:
   only:
     - master
+
+
+#deploy:
+#  provider: heroku
+# api-key:
+#    secure: KEY
+#  app:building-info
+#  on:
+#    repo: NareszcieCosSieDzieje/BuildingInfo
 
 #install: true
 #script: ./mvn clean install
