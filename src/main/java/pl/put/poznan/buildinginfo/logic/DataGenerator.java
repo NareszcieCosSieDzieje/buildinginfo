@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class DataGenerator {
 
-    public void generateBuilding(String name) throws IOException {
+    public static Building generateBuilding(String name) throws IOException {
         Building building = new Building(name);
         Random generator = new Random();
 
@@ -21,6 +21,11 @@ public class DataGenerator {
             }
             building.getFloorArrayList().add(floor);
         }
+        handleCreatingBuildingFile(building);
+        return building;
+    }
+
+    public static void handleCreatingBuildingFile(Building building) throws IOException {
         Gson g = new Gson();
         String jsonString = g.toJson(building);
         StringBuilder file_name = new StringBuilder("src/main/resources/");
@@ -37,8 +42,6 @@ public class DataGenerator {
         FileWriter writer = new FileWriter (file);
         writer.write(jsonString);
         writer.close();
-
-        //jakis data loader do typow budynkow np.: kamienica, blok, wieżowiec, dom wolnostojący
     }
 
 }

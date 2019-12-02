@@ -1,20 +1,20 @@
 package pl.put.poznan.buildinginfo.rest;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import pl.put.poznan.buildinginfo.logic.Building;
-import pl.put.poznan.buildinginfo.logic.JSONparser;
-import pl.put.poznan.buildinginfo.logic.ReadBuildingFile;
-import pl.put.poznan.buildinginfo.logic.Room;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+import pl.put.poznan.buildinginfo.logic.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
 public class BuildingInfoController {
-    @RequestMapping(method = RequestMethod.GET, path = "/total-square-area/{buildingFilename}")
+        @RequestMapping(method = RequestMethod.GET, path = "/total-square-area/{buildingFilename}")
     public float totalSquareArea(@PathVariable String buildingFilename) {
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
@@ -106,12 +106,15 @@ public class BuildingInfoController {
         return building.getOverheatingRooms(parameter);
     }
 
-    /*
-    @RequestMapping(value = "/add_building", method = RequestMethod.POST)
-    public ResponseEntity<List<Building>> addBuilding(@RequestBody List<Building> buildings) {
-        //wez json liste budynkow sprawdz czy okej dane/ dodaj id?? i to co ok to zapisz a to co nie to zwroc
+    @RequestMapping(value = "/createBuilding", method = RequestMethod.POST)
+    public ResponseEntity<String> createBuilding(@RequestBody Building building) throws IOException {
+        DataGenerator.handleCreatingBuildingFile(building);
+        return new ResponseEntity<>("Stworzono!", HttpStatus.CREATED);
+    }
 
-        return new ResponseEntity<List<Car>>(cars, HttpStatus.OK);
-    }*/
+    @RequestMapping(value = "/createBuildingByName", method = RequestMethod.POST)
+    public ResponseEntity<Building> createBuilding(@RequestBody String name) throws IOException {
+        Building building = DataGenerator.generateBuilding(name);
+        return new ResponseEntity<>(building, HttpStatus.CREATED);
+    }
 }
-        //puty zwracaja dane pokazujac jakie id maja rzeczy
