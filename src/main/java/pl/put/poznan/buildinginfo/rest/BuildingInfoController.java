@@ -1,5 +1,7 @@
 package pl.put.poznan.buildinginfo.rest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,7 +24,7 @@ import java.util.List;
 
 @RestController
 public class BuildingInfoController {
-
+    private Logger log = LoggerFactory.getLogger(BuildingInfoController.class);
 
     static class ExceptionHandler{
 
@@ -38,6 +40,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/total-square-area/{buildingFilename}")
     public float totalSquareArea(@PathVariable String buildingFilename) {
+        log.info("Counting Total Square Area " + buildingFilename);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getTotalSquareArea();
@@ -45,6 +48,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-square-area/{buildingFilename}/{floorid}")
     public  ResponseEntity<Float> floorSquareArea(@PathVariable String buildingFilename, @PathVariable String floorid) {
+        log.info("Counting Floor Area: " + floorid);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getFloorSquareArea(floorid);
@@ -53,6 +57,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-square-area/{buildingFilename}/{roomid}")
     public ResponseEntity<Float> roomSquareArea(@PathVariable String buildingFilename, @PathVariable String roomid) {
+        log.info("Counting Room Square Area: " + roomid);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getRoomSquareArea(roomid);
@@ -62,6 +67,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/total-cubic-area/{buildingFilename}")
     public float totalCubicArea(@PathVariable String buildingFilename) {
+        log.info("Counting Total Cubic Area: " + buildingFilename);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getTotalCubicArea();
@@ -69,6 +75,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-cubic-area/{buildingFilename}/{floorid}")
     public ResponseEntity<Float> floorCubicArea(@PathVariable String buildingFilename, @PathVariable String floorid) {
+        log.info("Counting Floor Cubic Area: " + floorid );
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getFloorCubicArea(floorid);
@@ -77,6 +84,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-cubic-area/{buildingFilename}/{roomid}")
     public ResponseEntity<Float> roomCubicArea(@PathVariable String buildingFilename, @PathVariable String roomid) {
+        log.info("Counting Room Cubic Area: " + roomid);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getRoomCubicArea(roomid);
@@ -85,6 +93,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/total-light/{buildingFilename}")
     public float totalLight(@PathVariable String buildingFilename) {
+        log.info("Show Total Light in the building:" +buildingFilename);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getTotalLight();
@@ -92,6 +101,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-light/{buildingFilename}/{floorid}")
     public ResponseEntity<Float> floorLight(@PathVariable String buildingFilename, @PathVariable String floorid) {
+        log.info("Show Floor Light in the building:" + floorid);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getFloorLight(floorid);
@@ -100,6 +110,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-light/{buildingFilename}/{roomid}")
     public ResponseEntity<Float> roomLight(@PathVariable String buildingFilename, @PathVariable String roomid) {
+        log.info("Show Room Light in the building:" + roomid);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getRoomLight(roomid);
@@ -108,6 +119,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/total-heat/{buildingFilename}")
     public float totalHeat(@PathVariable String buildingFilename) {
+        log.info("Show Total Heat in the building:" + buildingFilename);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getTotalHeat();
@@ -115,6 +127,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/floor-heat/{buildingFilename}/{floorid}")
     public ResponseEntity<Float> floorHeat(@PathVariable String buildingFilename, @PathVariable String floorid) {
+        log.info("Show Floor Heat in the building:" + floorid);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getFloorHeat(floorid);
@@ -123,6 +136,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/room-heat/{buildingFilename}/{roomid}")
     public ResponseEntity<Float> roomHeat(@PathVariable String buildingFilename, @PathVariable String roomid) {
+        log.info("Show Room Heat in the building: " + roomid);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         Float res = building.getRoomHeat(roomid);
@@ -131,6 +145,7 @@ public class BuildingInfoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/overheating-rooms/{buildingFilename}/{parameter}")
     public ArrayList<Room> roomHeat(@PathVariable String buildingFilename, @PathVariable float parameter) {
+        log.info("Overheating Romms in building:" +buildingFilename);
         String buildingString = new ReadBuildingFile().toString(buildingFilename);
         Building building = JSONparser.getObject(buildingString);
         return building.getOverheatingRooms(parameter);
@@ -138,12 +153,14 @@ public class BuildingInfoController {
 
     @RequestMapping(value = "/createBuilding", method = RequestMethod.POST)
     public ResponseEntity<String> createBuilding(@RequestBody Building building) throws IOException {
+        log.info("Creating new building" + building.getName());
         DataGenerator.handleCreatingBuildingFile(building);
         return new ResponseEntity<>("Stworzono!", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/createBuildingByName", method = RequestMethod.POST)
     public ResponseEntity<Building> createBuilding(@RequestBody String name) throws IOException {
+        log.info("Creating Building by name:" + name);
         Building building = DataGenerator.generateBuilding(name);
         return new ResponseEntity<>(building, HttpStatus.CREATED);
     }
