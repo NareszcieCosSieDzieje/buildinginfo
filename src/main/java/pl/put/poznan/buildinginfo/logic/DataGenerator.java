@@ -1,12 +1,28 @@
 package pl.put.poznan.buildinginfo.logic;
 
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Random;
 
+/**
+ * Klasa odpowiedzialna za generowanie nowych danych, tworzy nowe budynki piętra i pokoje.
+ */
 public class DataGenerator {
 
+    private final static Logger log = LoggerFactory.getLogger(DataGenerator.class);
+
+    /**
+     *Metoda generująca nowy budynek z parametrem name, który będzie nazwą dla danego budynku
+     *Budynek tworzony jest za pomocą konstruktora z parametrem, następnie za pomocą random generatora liczb
+     *dodawane są piętra oraz pokoje do list. Piętra są dodawane do listy pięter budynku, a pokoje do listy pokoi piętra.
+     * @param name  nazwa budynku
+     * @return new building
+     * @throws IOException
+     *
+     */
     public static Building generateBuilding(String name) throws IOException {
         Building building = new Building(name);
         Random generator = new Random();
@@ -25,6 +41,14 @@ public class DataGenerator {
         return building;
     }
 
+    /**
+     * Funkcja, która obsługuje zapis nowo stworzonego budynku do pliku w formacie .json,
+     * funkcja tworzy plik na podstawie nazwy budnynku, w folderze resources.
+     * Sprawdza, czy taki budynek już istnieje, jeżeli tak, zwraca komunikat, jezeli nie, tworzy nowy plik
+     * @param building stworzony budynek
+     * @throws IOException
+     *
+     */
     public static void handleCreatingBuildingFile(Building building) throws IOException {
         Gson g = new Gson();
         String jsonString = g.toJson(building);
