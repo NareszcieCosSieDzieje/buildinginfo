@@ -1,6 +1,7 @@
 # BuildingInfo
 5.11.19
 dodaję edita
+nowy edit
 Błażej Granat i Dawid Jankowiak
 
 Projekt IO
