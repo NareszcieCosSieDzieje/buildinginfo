@@ -49,6 +49,12 @@ class BuildinginfoApplicationTests {
 		String building = new ReadBuildingFile().toString("dom1");
 		Assert.assertNotNull(building);
 	}
-
+	@Test
+	void overheatenRooms() throws IOException
+	{
+		DataGenerator dataGenerator = new DataGenerator();
+		Building building = dataGenerator.generateBuilding("test");
+		Assert.assertNotNull(building.getOverheatingRooms(0.0f));
+	}
 
 }
