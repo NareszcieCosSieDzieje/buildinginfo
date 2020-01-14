@@ -11,7 +11,7 @@ public class Floor extends Location {
         this.roomArrayList = new ArrayList<Room>(1000);
     }
 
-    Floor(String name) {
+    public Floor(String name) {
         super(name);
         this.roomArrayList = new ArrayList<Room>(1000);
         //TODO: stuff that makes this piece of code work
