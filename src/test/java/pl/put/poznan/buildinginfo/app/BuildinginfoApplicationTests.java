@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.Assert.*;
-import pl.put.poznan.buildinginfo.logic.Building;
-import pl.put.poznan.buildinginfo.logic.DataGenerator;
-import pl.put.poznan.buildinginfo.logic.Floor;
-import pl.put.poznan.buildinginfo.logic.Room;
+import pl.put.poznan.buildinginfo.logic.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,9 +38,17 @@ class BuildinginfoApplicationTests {
 	}
 	@Test
 	void generatinData() throws IOException {
+		//sprawdzanie czy generuje dobrze dane
 		DataGenerator dataGenerator = new DataGenerator();
 		Building building = dataGenerator.generateBuilding("testowy");
 		Assert.assertNotNull(building.getFloorArrayList());
 	}
+	@Test
+	void generatingFile(){
+		//sprawdzanie, czy dobrze sprawdza ścieżki dostępu do plików
+		String building = new ReadBuildingFile().toString("dom1");
+		Assert.assertNotNull(building);
+	}
+
 
 }

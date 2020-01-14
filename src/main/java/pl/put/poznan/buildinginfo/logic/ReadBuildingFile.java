@@ -6,7 +6,15 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * Klasa znajdująca  plik i wczytująca ścieżkę do pamięci jako string
+ */
 public class ReadBuildingFile {
+    /**
+     * Metoda prywatna pobierająca dane z pliku i generująca budynek
+     * @param filename  nazwa pliku
+     * @return
+     */
     private File getFileFromResources(String filename)
     {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -19,6 +27,11 @@ public class ReadBuildingFile {
         }
     }
 
+    /**
+     * metoda konwerująca plik do ścieżki dostępu
+     * @param filename nazwa pliku
+     * @return
+     */
     public String toString(String filename)
     {
         String filepath = getFileFromResources(filename + ".json").getPath();
